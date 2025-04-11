@@ -11,8 +11,8 @@ def webhook():
     data = request.get_json()  # Get the incoming JSON data
     print(f"Received request body: {json.dumps(data)}")
 
-    first_name = data.get('First Name', {})
-    first_name = phone_info.get('value')
+    first_name_info = data.get('First Name', {})
+    first_name = first_name_info.get('value')
 
     return "Processed request", 200
 
