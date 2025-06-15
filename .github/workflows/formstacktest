@@ -1,0 +1,14 @@
+import azure.functions as func
+import logging
+
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info("Webhook received")
+
+    try:
+        # Just log and return raw body for testing
+        body = req.get_body().decode("utf-8")
+        logging.info(f"Raw request body: {body}")
+        return func.HttpResponse(f"Received raw data:\n{body}", status_code=200)
+    except Exception as e:
+        logging.error(f"Error: {str(e)}")
+        return func.HttpResponse("Internal server error", status_code=500)
